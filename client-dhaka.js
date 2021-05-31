@@ -1,5 +1,5 @@
 const io = require('socket.io-client')
-const socket = io.connect('http://localhost:6401') 
+const socket = io.connect('http://10.100.0.3:6400') 
 const axios = require('axios')
 
 var riderCounter = 0, driverCounter = 0 ;
@@ -11,6 +11,7 @@ function getRandomValue() {
     return Math.random()*99 ;
 }
 
+var location = "dhaka"
 
 setInterval(()=>{
     riderCounter++ ;
@@ -18,7 +19,7 @@ setInterval(()=>{
 
     axios({
         method: 'post',
-        url: 'http://localhost:8002/rider',
+        url: 'http://' + location + '.server.com:8002/rider',
         data:{
             riderName : riderName ,
             riderCoorX : getRandomValue(),
@@ -40,7 +41,7 @@ setInterval(()=>{
 
     axios({
         method: 'post',
-        url: 'http://localhost:8002/driver',
+        url: 'http://' + location + '.server.com:8002/driver',
         data:{
             driverName : driverName ,
             driverCarName : driverCarName,
@@ -73,7 +74,7 @@ socket.on("result", (data)=>{
 
     axios({
         method: 'post',
-        url: 'http://localhost:8002/ratingDriver',
+        url: 'http://' + location + '.server.com:8002/ratingDriver',
         data:{
             driverName : myObject.driverName ,
             driverRating : getRandomInt(6)

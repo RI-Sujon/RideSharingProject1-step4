@@ -35,6 +35,8 @@ app.post('/driver', (req, res) => {
     driverArray.push(jsonData);
 })
 
+var servername = process.env.LOCATION ;
+var address = 'http://communication-' + servername + ':6400/communication' ;
 setInterval(()=>{
     for(var i=0; i<riderArray.length ; i++){
         rideFare = 0.0 ;
@@ -69,7 +71,7 @@ setInterval(()=>{
 
     axios({
         method: 'post',
-        url: 'http://communication:6401/communication',
+        url: address,
         data:{
             results: resultArray
         }

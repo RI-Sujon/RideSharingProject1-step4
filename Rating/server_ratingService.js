@@ -35,7 +35,7 @@ app.post("/ratingDriver", (req, res) => {
             "driverRating": jsonData.driverRating
         };
 
-        dbo.collection("driverInfo4").insertOne(myobj, function(err, res) {
+        dbo.collection("driverInfo5").insertOne(myobj, function(err, res) {
             if (err) throw err;
             console.log("1 document inserted");
             db.close();

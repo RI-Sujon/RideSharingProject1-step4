@@ -1,0 +1,15 @@
+server {
+		listen 8002 ;
+		
+		location /rider {
+			proxy_pass http://${API_RIDING}:6400 ;
+		}
+		
+		location /driver {
+			proxy_pass http://${API_RIDING}:6400 ;
+		}
+		
+		location /ratingDriver {
+			proxy_pass http://${API_RATING}:6400 ;
+		}
+	}

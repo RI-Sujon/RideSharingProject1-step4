@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const http = require('http').createServer(app)
 
-const PORT = process.env.PORT || 6401
+const PORT = process.env.PORT || 6400
 
 http.listen(PORT,()=>{
     console.log('Listening on port' + PORT)
@@ -23,7 +23,9 @@ app.post('/communication', (req, res) => {
     var jsonData = JSON.parse(JSON.stringify(req.body));
     console.log("Thanks, I got the resultsArray");
     resultArray = jsonData.results;
-    //console.log(resultArray);
+    if(resultArray.length!=0){
+        console.log(resultArray.length);
+    }
 })
 
 //Socket
