@@ -1,0 +1,32 @@
+version: '3'
+
+services: 
+    communication:
+        build: ./Communication/
+        restart: always
+        ports: 
+            - 6401:6401
+
+    rating:
+        build: ./Rating/
+        restart: always
+
+    riding:
+        build: ./Riding/
+        restart: always
+        depends_on: 
+            - communication
+
+    nginx:
+        build: ./nginx/
+        ports: 
+            - 8002:8002
+        depends_on: 
+            - riding
+            - rating
+
+    mymongo:
+        image: mongo
+        ports: 
+            - 27018:27017
+        restart: always
